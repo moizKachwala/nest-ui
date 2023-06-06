@@ -7,7 +7,10 @@ import * as API from '../api/chat';
 function* getList(action) {
     try {
         yield put({ type: actions.CHAT_GET_RESPONSE_PENDING });
-        const payload = yield call(API.getList);
+        const {
+            chatPayload
+        } = action.payload;
+        const payload = yield call(API.getList, chatPayload);
         yield put({ type: actions.CHAT_GET_RESPONSE_FULFILLED, payload });
     } catch (error) {
         const { error: errorMessage } = (error && error.payload) || { error: '' };

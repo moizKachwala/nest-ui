@@ -6,9 +6,9 @@ export default function ChatPage(props) {
 
     useEffect(() => {
         const payload = {
-            question: "give me 1 grammer  questions with answers for grade 3 in json format"
+            question: "give me 1 grammer questions with answers for grade 3 in json format"
         }
-        chatList();
+        chatList(payload);
     }, [chatList]);
 
     return (

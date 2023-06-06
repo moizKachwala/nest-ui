@@ -3,14 +3,14 @@ import {
     SERVER_URL,
 } from '../constants/api';
 import {
-    headersAuthSendReceiveJson,
+    headersSendReceiveJson,
 } from '../headers';
 import { apiHandleResponse } from '../../utils/api';
 
 const getList = (options) => {
     return fetch(`${SERVER_URL}/chat-gpt-ai/messagegpt`, {
         method: METHOD_POST,
-        headers: headersAuthSendReceiveJson(),
+        headers: headersSendReceiveJson(),
         body: JSON.stringify(options),
     }).then(apiHandleResponse);
 };
