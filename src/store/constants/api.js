@@ -32,4 +32,4 @@ export const HEADERS_OCTET_SEND_RECEIVE = {
     ...HEADERS_OCTET_RECEIVE,
 };
 
-export const SERVER_URL = 'https://nestgpt.onrender.com'; //process.env.REACT_APP_API_ENDPOINT;
+export const SERVER_URL = process.env.REACT_APP_API_ENDPOINT;
