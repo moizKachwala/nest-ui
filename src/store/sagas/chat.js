@@ -19,10 +19,39 @@ function* getList(action) {
     }
 }
 
+function* getTitles(action) {
+    try {
+        yield put({ type: actions.CHAT_GET_ESSAY_TITLES_PENDING });
+        const payload = yield call(API.getTitles);
+        yield put({ type: actions.CHAT_GET_ESSAY_TITLES_FULFILLED, payload });
+    } catch (error) {
+        const { error: errorMessage } = (error && error.payload) || { error: '' };
+        yield put({ type: actions.CHAT_GET_ESSAY_TITLES_REJECTED, payload: errorMessage });
+        // yield call(sessionErrorHandling, error);
+    }
+}
+
+function* validateEssay(action) {
+    try {
+        yield put({ type: actions.CHAT_VALIDATE_ESSAY_PENDING });
+        const {
+            essay
+        } = action.payload;
+        const payload = yield call(API.validateEssay, essay);
+        yield put({ type: actions.CHAT_VALIDATE_ESSAY_FULFILLED, payload });
+    } catch (error) {
+        const { error: errorMessage } = (error && error.payload) || { error: '' };
+        yield put({ type: actions.CHAT_VALIDATE_ESSAY_REJECTED, payload: errorMessage });
+        // yield call(sessionErrorHandling, error);
+    }
+}
+
 // export function* reset() {
 //     yield put({ type: actions.CHAT_GET_RESPONSE_RESET });
 // }
 
 export default function*() {
     yield takeEvery(actions.CHAT_GET_RESPONSE, getList);
+    yield takeEvery(actions.CHAT_GET_ESSAY_TITLES, getTitles);
+    yield takeEvery(actions.CHAT_VALIDATE_ESSAY, validateEssay);
 }
