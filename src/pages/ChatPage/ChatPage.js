@@ -142,7 +142,7 @@ export default function ChatPage(props) {
                             </Grid>
                             <Grid container>
                                 <Grid item xs={12}>
-                                    <h1>Response New</h1>
+                                    <h1>Response New1</h1>
                                     {<h3>{validations.response}</h3>}
 
                                 </Grid>
