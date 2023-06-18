@@ -7,49 +7,51 @@ const initialStatusState = {
     pending: false,
 };
 
+
+// {
+//     "title": "My Favorite Animal",
+//     "hint": "Write about your favorite animal, where it lives, what it eats, and why you like it."
+// },
+// {
+//     "title": "My Family",
+//     "hint": "Introduce your family members, their names, what they do, and how they make you feel."
+// },
+// {
+//     "title": "A Day at the Beach",
+//     "hint": "Describe your experience at the beach, what you saw, what you did, and what you learned."
+// },
+// {
+//     "title": "My Best Friend",
+//     "hint": "Write about your best friend, what you like to do together, and why you enjoy their company."
+// },
+// {
+//     "title": "My Hobbies",
+//     "hint": "Share your hobbies, what you like to do, and why you enjoy them."
+// },
+// {
+//     "title": "My Favorite Food",
+//     "hint": "Write about your favorite food, what it tastes like, how it's made, and why you like it."
+// },
+// {
+//     "title": "My Dream Vacation",
+//     "hint": "Describe your dream vacation, where you would go, what you would do, and why you want to go there."
+// },
+// {
+//     "title": "My School",
+//     "hint": "Introduce your school, what you learn, who your teachers are, and what you like about it."
+// },
+// {
+//     "title": "My Favorite Book",
+//     "hint": "Write about your favorite book, what it's about, who the characters are, and why you like it."
+// },
+// {
+//     "title": "My Favorite Season",
+//     "hint": "Describe your favorite season, what the weather is like, what you do, and why you like it."
+// }
+
 const initialState = {
     list: [],
     titles: [
-        {
-            "title": "My Favorite Animal",
-            "hint": "Write about your favorite animal, where it lives, what it eats, and why you like it."
-        },
-        {
-            "title": "My Family",
-            "hint": "Introduce your family members, their names, what they do, and how they make you feel."
-        },
-        {
-            "title": "A Day at the Beach",
-            "hint": "Describe your experience at the beach, what you saw, what you did, and what you learned."
-        },
-        {
-            "title": "My Best Friend",
-            "hint": "Write about your best friend, what you like to do together, and why you enjoy their company."
-        },
-        {
-            "title": "My Hobbies",
-            "hint": "Share your hobbies, what you like to do, and why you enjoy them."
-        },
-        {
-            "title": "My Favorite Food",
-            "hint": "Write about your favorite food, what it tastes like, how it's made, and why you like it."
-        },
-        {
-            "title": "My Dream Vacation",
-            "hint": "Describe your dream vacation, where you would go, what you would do, and why you want to go there."
-        },
-        {
-            "title": "My School",
-            "hint": "Introduce your school, what you learn, who your teachers are, and what you like about it."
-        },
-        {
-            "title": "My Favorite Book",
-            "hint": "Write about your favorite book, what it's about, who the characters are, and why you like it."
-        },
-        {
-            "title": "My Favorite Season",
-            "hint": "Describe your favorite season, what the weather is like, what you do, and why you like it."
-        }
     ],
     validations: {},
     getList: {
@@ -91,7 +93,7 @@ export default createReducer(initialState, {
             pending: true,
         },
     }),
-    [actions.CHAT_GET_ESSAY_TITLES_FULFILLED]: (state, titles) => ({
+    [actions.CHAT_GET_ESSAY_TITLES_FULFILLED]: (state, titles = []) => ({
         ...state,
         getTitle: {
             ...initialStatusState,

@@ -1,12 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
-import { ChatPage } from './pages/ChatPage';
+import ThemeCustomization from './themes';
+import ScrollTop from './components/ScrollTop';
+// import { ChatPage } from './pages/ChatPage';
+import Routes from './routes';
 
 function App() {
   return (
-    <div className="App">
-      <ChatPage />
-    </div>
+    <ThemeCustomization>
+      <ScrollTop>
+        <Routes />
+      </ScrollTop>      
+    </ThemeCustomization>
   );
 }
 
