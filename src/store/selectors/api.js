@@ -7,6 +7,7 @@ import {
     HEADERS_JSON_SEND_RECEIVE,
     HEADERS_OCTET_RECEIVE,
     HEADERS_OCTET_SEND_RECEIVE,
+    HEADERS_TEXT_HTML_SEND_RECEIVE,
 } from '../constants/api';
 
 export const selectAuthHeaders = () => {
@@ -30,3 +31,4 @@ export const selectAuthReceiveJsonHeaders = selectAuthHeadersMerge(HEADERS_JSON_
 export const selectAuthSendReceiveJsonHeaders = selectAuthHeadersMerge(HEADERS_JSON_SEND_RECEIVE);
 export const selectAuthReceiveOctetHeaders = selectAuthHeadersMerge(HEADERS_OCTET_RECEIVE);
 export const selectAuthSendReceiveOctetHeaders = selectAuthHeadersMerge(HEADERS_OCTET_SEND_RECEIVE);
+export const selectAuthSendReceiveTextHtmlHeaders = selectAuthHeadersMerge(HEADERS_TEXT_HTML_SEND_RECEIVE);

@@ -53,7 +53,7 @@ const initialState = {
     list: [],
     titles: [
     ],
-    validations: {},
+    validations: '',
     getList: {
         ...initialStatusState,
     },

@@ -7,6 +7,7 @@ import {
     selectAuthSendReceiveJsonHeaders,
     selectAuthReceiveOctetHeaders,
     selectAuthSendReceiveOctetHeaders,
+    selectAuthSendReceiveTextHtmlHeaders,
 } from './selectors/api';
 import { HEADERS_JSON_RECEIVE, HEADERS_JSON_SEND_RECEIVE } from './constants/api';
 
@@ -57,3 +58,4 @@ export const headersReceiveJson = headers(() => HEADERS_JSON_RECEIVE);
 export const headersSendReceiveJson = headers(() => HEADERS_JSON_SEND_RECEIVE);
 export const headersAuthReceiveOctet = headers(selectAuthReceiveOctetHeaders);
 export const headersAuthSendReceiveOctet = headers(selectAuthSendReceiveOctetHeaders);
+export const headersAuthSendReceiveTextHtml = headers(selectAuthSendReceiveTextHtmlHeaders);

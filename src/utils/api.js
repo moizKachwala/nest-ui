@@ -3,6 +3,8 @@ function processResponseBody(response) {
     if (contentType) {
         if (contentType.indexOf('application/json') !== -1) {
             return response.json();
+        } else if (contentType.indexOf('text/html; charset=utf-8') !== -1) {
+            return response.text();
         }
     }
     return Promise.resolve();

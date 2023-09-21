@@ -173,11 +173,11 @@ export default function ChatPage(props) {
                                         &nbsp; {validatePending && <CircularProgress size={20} />}
                                     </Grid>
                                 </Grid>
-                                {validations.response && (
+                                {validations && (
                                     <Grid container>
                                         <Grid item xs={12}>
                                             <h1>Response</h1>
-                                            {validations.response}
+                                            {validations}
                                         </Grid>
                                     </Grid>
                                 )}

@@ -6,6 +6,7 @@ import {
 import {
     headersReceiveJson,
     headersSendReceiveJson,
+    headersAuthSendReceiveTextHtml,
 } from '../headers';
 import { apiHandleResponse } from '../../utils/api';
 
@@ -27,7 +28,7 @@ const getTitles = () => {
 const validateEssay = (options) => {
     return fetch(`${SERVER_URL}/chat-gpt-ai/validateEssay`, {
         method: METHOD_POST,
-        headers: headersSendReceiveJson(),
+        headers: headersAuthSendReceiveTextHtml(),
         body: JSON.stringify(options),
     }).then(apiHandleResponse);
 };

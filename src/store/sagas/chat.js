@@ -37,7 +37,7 @@ function* validateEssay(action) {
         const {
             essay
         } = action.payload;
-        const payload = yield call(API.validateEssay, essay);
+        const payload = yield call(API.validateEssay, essay);        
         yield put({ type: actions.CHAT_VALIDATE_ESSAY_FULFILLED, payload });
     } catch (error) {
         const { error: errorMessage } = (error && error.payload) || { error: '' };
