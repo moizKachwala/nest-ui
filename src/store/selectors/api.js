@@ -10,16 +10,20 @@ import {
     HEADERS_TEXT_HTML_SEND_RECEIVE,
 } from '../constants/api';
 
-export const selectAuthHeaders = () => {
-    const authToken = fromLocalStorage('authToken', null);
-    if (authToken) {
-        return { 'Authorization': `Bearer ${authToken}` };
+// Function to retrieve authentication headers
+export const selectAuthHeaders = createSelector(
+    () => fromLocalStorage('authToken', null), // Selector input
+    (authToken) => {
+        if (authToken) {
+            return { 'Authorization': `Bearer ${authToken}` };
+        }
+        return { 'Authorization': 'NULL' };
     }
-    return { 'Authorization': 'NULL' };
-}
+);
 
-const selectAuthHeadersMerge = (baseHeaders) => createSelector(
-    selectAuthHeaders,
+// Function to merge authentication headers with base headers
+export const selectAuthHeadersMerge = (baseHeaders) => createSelector(
+    selectAuthHeaders, // Input selector
     (headers) => ({
         ...baseHeaders,
         ...headers,
