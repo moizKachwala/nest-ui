@@ -2,7 +2,7 @@ import { takeEvery, put, call } from 'redux-saga/effects';
 
 import * as actions from '../actions/chat';
 import * as API from '../api/chat';
-// import { sessionErrorHandling } from './session';
+import { sessionErrorHandling } from './session';
 
 function* getList(action) {
     try {
@@ -15,7 +15,7 @@ function* getList(action) {
     } catch (error) {
         const { error: errorMessage } = (error && error.payload) || { error: '' };
         yield put({ type: actions.CHAT_GET_RESPONSE_REJECTED, payload: errorMessage });
-        // yield call(sessionErrorHandling, error);
+        yield call(sessionErrorHandling, error);
     }
 }
 
@@ -27,7 +27,7 @@ function* getTitles(action) {
     } catch (error) {
         const { error: errorMessage } = (error && error.payload) || { error: '' };
         yield put({ type: actions.CHAT_GET_ESSAY_TITLES_REJECTED, payload: errorMessage });
-        // yield call(sessionErrorHandling, error);
+        yield call(sessionErrorHandling, error);
     }
 }
 
@@ -42,7 +42,7 @@ function* validateEssay(action) {
     } catch (error) {
         const { error: errorMessage } = (error && error.payload) || { error: '' };
         yield put({ type: actions.CHAT_VALIDATE_ESSAY_REJECTED, payload: errorMessage });
-        // yield call(sessionErrorHandling, error);
+        yield call(sessionErrorHandling, error);
     }
 }
 

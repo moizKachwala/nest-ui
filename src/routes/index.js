@@ -4,6 +4,7 @@ import { createSelector } from "reselect";
 import {selectAuthenticated} from '../store/selectors/session';
 import { ChatPage } from "../pages/ChatPage";
 import { LoginPage } from "../pages/LoginPage";
+import LogoutPage from "../pages/auth/LogoutPage";
 import MainLayout from 'layout/MainLayout';
 import MinimalLayout from 'layout/MinimalLayout';
 
@@ -34,6 +35,7 @@ export default function ThemeRoutes() {
             <Route path="*" element={<Navigate to="/chat" replace /> } />
             <Route path="/" element={<HomePage />} />
             <Route path="/chat" element={<ChatPage />} />
+            <Route path="/logout" element={<LogoutPage />} />
           </Route>
         )}
       </Routes>

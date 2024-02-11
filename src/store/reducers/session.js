@@ -27,18 +27,6 @@ const initialState = {
   construct: {
     ...API_INITIAL_STATE,
   },
-  eula: {
-    ...API_INITIAL_STATE,
-  },
-  changePassword: {
-    ...API_INITIAL_STATE,
-  },
-  refreshToken: {
-    ...API_INITIAL_STATE,
-  },
-  forcedResetPassword: {
-    ...API_INITIAL_STATE,
-  },
   idleAlert: false
 };
 

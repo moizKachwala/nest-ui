@@ -4,13 +4,14 @@ import { useState } from 'react';
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import {Link} from 'react-router-dom';
 
 // assets
 import { EditOutlined, ProfileOutlined, LogoutOutlined, UserOutlined, WalletOutlined } from '@ant-design/icons';
 
 // ==============================|| HEADER PROFILE - PROFILE TAB ||============================== //
 
-const ProfileTab = ({ handleLogout }) => {
+const ProfileTab = () => {
     const theme = useTheme();
 
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -20,7 +21,7 @@ const ProfileTab = ({ handleLogout }) => {
 
     return (
         <List component="nav" sx={{ p: 0, '& .MuiListItemIcon-root': { minWidth: 32, color: theme.palette.grey[500] } }}>
-            <ListItemButton selected={selectedIndex === 0} onClick={(event) => handleListItemClick(event, 0)}>
+            {/* <ListItemButton selected={selectedIndex === 0} onClick={(event) => handleListItemClick(event, 0)}>
                 <ListItemIcon>
                     <EditOutlined />
                 </ListItemIcon>
@@ -44,8 +45,8 @@ const ProfileTab = ({ handleLogout }) => {
                     <WalletOutlined />
                 </ListItemIcon>
                 <ListItemText primary="Billing" />
-            </ListItemButton>
-            <ListItemButton selected={selectedIndex === 2} onClick={handleLogout}>
+            </ListItemButton> */}
+            <ListItemButton component={Link} selected={selectedIndex === 2} to="/logout">
                 <ListItemIcon>
                     <LogoutOutlined />
                 </ListItemIcon>

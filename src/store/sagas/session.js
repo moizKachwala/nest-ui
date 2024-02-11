@@ -44,8 +44,8 @@ function* construct(action) {
 
     try {
         yield put({ type: actions.SESSION_CONSTRUCT_PENDING });
-        // const user = yield call(API.getCurrentUser);
-        // yield put({ type: actions.SESSION_USER_OBJECT, payload: { user } });
+        const user = yield call(API.getCurrentUser);
+        yield put({ type: actions.SESSION_USER_OBJECT, payload: { user } });
 
         // const roles = yield call(USERS_API.getUserRoles);
         // yield put({ type: usersActions.USERS_ROLES_LIST_FULFILLED, payload: roles });
@@ -79,29 +79,29 @@ function* construct(action) {
     }
 }
 
-// export function* reset() {
-//     // Clear other stuff from store.
-//     yield toLocalStorage('authToken', null);
+export function* reset() {
+    // Clear other stuff from store.
+    yield toLocalStorage('authToken', null);
 
-//     try {
-//         yield all([
-//             call(clientsReset),
-//             call(usersReset),
-//             call(rolesReset),
-//             call(dashboardReset),
-//             call(dashboardDataSourcesReset),
-//             call(dashboardFiltersReset),
-//             call(dashboardTypesReset),
-//         ]);
-//     } catch (error) {
-//         throw error;
-//     }
-// }
+    // try {
+    //     yield all([
+    //         call(clientsReset),
+    //         call(usersReset),
+    //         call(rolesReset),
+    //         call(dashboardReset),
+    //         call(dashboardDataSourcesReset),
+    //         call(dashboardFiltersReset),
+    //         call(dashboardTypesReset),
+    //     ]);
+    // } catch (error) {
+    //     throw error;
+    // }
+}
 
-// function* deconstruct() {
-//     yield call(reset);
-//     clearRefreshTimer();
-// }
+function* deconstruct() {
+    yield call(reset);
+    // clearRefreshTimer();
+}
 
 function* logout(action) {
     //const { manual } = action.payload;
@@ -126,6 +126,6 @@ export function* sessionErrorHandling(error) {
 export default function* () {
     yield takeEvery(actions.SESSION_LOGIN, login);
     yield takeEvery(actions.SESSION_CONSTRUCT, construct);
-    // yield takeEvery(actions.SESSION_DECONSTRUCT, deconstruct);
+    yield takeEvery(actions.SESSION_DECONSTRUCT, deconstruct);
     yield takeEvery(actions.SESSION_LOGOUT, logout);
 }

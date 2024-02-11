@@ -10,7 +10,7 @@ import MobileSection from './MobileSection';
 
 // ==============================|| HEADER - CONTENT ||============================== //
 
-const HeaderContent = () => {
+const HeaderContent = ({user}) => {
     const matchesXs = useMediaQuery((theme) => theme.breakpoints.down('md'));
 
     return (
@@ -31,7 +31,7 @@ const HeaderContent = () => {
             </IconButton> */}
 
             {/* <Notification /> */}
-            {!matchesXs && <Profile />}
+            {!matchesXs && <Profile user={user} />}
             {matchesXs && <MobileSection />}
         </>
     );

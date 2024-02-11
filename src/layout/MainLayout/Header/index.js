@@ -13,7 +13,7 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 
 // ==============================|| MAIN LAYOUT - HEADER ||============================== //
 
-const Header = ({ open, handleDrawerToggle }) => {
+const Header = ({ open, handleDrawerToggle, user }) => {
     const theme = useTheme();
     const matchDownMD = useMediaQuery(theme.breakpoints.down('lg'));
 
@@ -33,7 +33,7 @@ const Header = ({ open, handleDrawerToggle }) => {
             >
                 {!open ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             </IconButton>
-            <HeaderContent />
+            <HeaderContent user={user}/>
         </Toolbar>
     );
 
@@ -63,7 +63,8 @@ const Header = ({ open, handleDrawerToggle }) => {
 
 Header.propTypes = {
     open: PropTypes.bool,
-    handleDrawerToggle: PropTypes.func
+    handleDrawerToggle: PropTypes.func,
+    user: PropTypes.object,
 };
 
 export default Header;

@@ -14,7 +14,7 @@ const login = (username = '', password = '') => {
 };
 
 const getCurrentUser = () => {
-    return fetch(`${SERVER_URL}/api/v1/user/me`, {
+    return fetch(`${SERVER_URL}/users/me`, {
         method: METHOD_GET,
         headers: headersAuthReceiveJson(),
     }).then(apiHandleResponse);

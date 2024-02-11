@@ -4,8 +4,8 @@ import {
     SERVER_URL,
 } from '../constants/api';
 import {
-    headersReceiveJson,
-    headersSendReceiveJson,
+    headersAuthReceiveJson,
+    headersAuthSendReceiveJson,
     headersAuthSendReceiveTextHtml,
 } from '../headers';
 import { apiHandleResponse } from '../../utils/api';
@@ -13,7 +13,7 @@ import { apiHandleResponse } from '../../utils/api';
 const getList = (options) => {
     return fetch(`${SERVER_URL}/chat-gpt-ai/messagegpt`, {
         method: METHOD_POST,
-        headers: headersSendReceiveJson(),
+        headers: headersAuthSendReceiveJson(),
         body: JSON.stringify(options),
     }).then(apiHandleResponse);
 };
@@ -21,7 +21,7 @@ const getList = (options) => {
 const getTitles = () => {
     return fetch(`${SERVER_URL}/chat-gpt-ai/listEssayTitles`, {
         method: METHOD_GET,
-        headers: headersReceiveJson()
+        headers: headersAuthReceiveJson()
     }).then(apiHandleResponse);
 };
 

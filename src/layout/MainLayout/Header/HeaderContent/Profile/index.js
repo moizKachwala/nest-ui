@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
+import {Link} from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -53,12 +54,8 @@ function a11yProps(index) {
 
 // ==============================|| HEADER CONTENT - PROFILE ||============================== //
 
-const Profile = () => {
+const Profile = ({user}) => {
     const theme = useTheme();
-
-    const handleLogout = async () => {
-        // logout
-    };
 
     const anchorRef = useRef(null);
     const [open, setOpen] = useState(false);
@@ -97,8 +94,8 @@ const Profile = () => {
                 onClick={handleToggle}
             >
                 <Stack direction="row" spacing={2} alignItems="center" sx={{ p: 0.5 }}>
-                    <Avatar alt="profile user" src={avatar1} sx={{ width: 32, height: 32 }} />
-                    <Typography variant="subtitle1">John Doe</Typography>
+                    {/* <Avatar alt="profile user" src={avatar1} sx={{ width: 32, height: 32 }} /> */}
+                    <Typography variant="subtitle1">{user.firstName} {user.lastName}</Typography>
                 </Stack>
             </ButtonBase>
             <Popper
@@ -139,23 +136,23 @@ const Profile = () => {
                                             <Grid container justifyContent="space-between" alignItems="center">
                                                 <Grid item>
                                                     <Stack direction="row" spacing={1.25} alignItems="center">
-                                                        <Avatar alt="profile user" src={avatar1} sx={{ width: 32, height: 32 }} />
+                                                        {/* <Avatar alt="profile user" src={avatar1} sx={{ width: 32, height: 32 }} /> */}
                                                         <Stack>
-                                                            <Typography variant="h6">John Doe</Typography>
+                                                            <Typography variant="h6">{user.firstName} {user.lastName}</Typography>
                                                             <Typography variant="body2" color="textSecondary">
-                                                                UI/UX Designer
+                                                                {user.username}
                                                             </Typography>
                                                         </Stack>
                                                     </Stack>
                                                 </Grid>
                                                 <Grid item>
-                                                    <IconButton size="large" color="secondary" onClick={handleLogout}>
+                                                    <IconButton component={Link} to="/logout" size="large" color="secondary">
                                                         <LogoutOutlined />
                                                     </IconButton>
                                                 </Grid>
                                             </Grid>
                                         </CardContent>
-                                        {open && (
+                                        {/* {open && (
                                             <>
                                                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                                     <Tabs
@@ -197,7 +194,7 @@ const Profile = () => {
                                                     <SettingTab />
                                                 </TabPanel>
                                             </>
-                                        )}
+                                        )} */}
                                     </MainCard>
                                 </ClickAwayListener>
                             </Paper>

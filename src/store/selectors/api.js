@@ -11,15 +11,13 @@ import {
 } from '../constants/api';
 
 // Function to retrieve authentication headers
-export const selectAuthHeaders = createSelector(
-    () => fromLocalStorage('authToken', null), // Selector input
-    (authToken) => {
-        if (authToken) {
-            return { 'Authorization': `Bearer ${authToken}` };
-        }
-        return { 'Authorization': 'NULL' };
+export const selectAuthHeaders = () => {
+    const authToken = fromLocalStorage('authToken', null);
+    if (authToken) {
+        return { 'Authorization': `Bearer ${authToken}` };
     }
-);
+    return { 'Authorization': 'NULL' };
+}
 
 // Function to merge authentication headers with base headers
 export const selectAuthHeadersMerge = (baseHeaders) => createSelector(
