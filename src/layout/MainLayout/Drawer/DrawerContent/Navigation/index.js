@@ -7,17 +7,17 @@ import menuItem from 'menu-items';
 
 // ==============================|| DRAWER CONTENT - NAVIGATION ||============================== //
 
-const Navigation = () => {
+const Navigation = ({user}) => {
+    const userRole = user.roles[0].name;
     const navGroups = menuItem.items.map((item) => {
-        switch (item.type) {
-            case 'group':
-                return <NavGroup key={item.id} item={item} />;
-            default:
-                return (
-                    <Typography key={item.id} variant="h6" color="error" align="center">
-                        Fix - Navigation Group
-                    </Typography>
-                );
+        if(item.type === 'admin' && userRole === 'SuperAdmin') {
+            return <NavGroup key={item.id} item={item} />;
+        } else if(item.type === 'teacher' && userRole === 'teacher') {
+            return <NavGroup key={item.id} item={item} />;
+        } else if(item.type === 'parent' && userRole === 'parent') {
+            return <NavGroup key={item.id} item={item} />;
+        } else if(item.type === 'student' && userRole === 'student') {
+            return <NavGroup key={item.id} item={item} />;
         }
     });
 

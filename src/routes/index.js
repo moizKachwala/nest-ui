@@ -32,8 +32,7 @@ export default function ThemeRoutes() {
           </>
         ) : (
           <Route path="/" element={<MainLayout />} >
-            <Route path="*" element={<Navigate to="/chat" replace /> } />
-            <Route path="/" element={<HomePage />} />
+            <Route path="*" element={<HomePage />} />
             <Route path="/chat" element={<ChatPage />} />
             <Route path="/logout" element={<LogoutPage />} />
           </Route>

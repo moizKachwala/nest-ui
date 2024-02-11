@@ -5,7 +5,7 @@ import SimpleBar from 'components/third-party/SimpleBar';
 
 // ==============================|| DRAWER CONTENT ||============================== //
 
-const DrawerContent = () => (
+const DrawerContent = ({user}) => (
     <SimpleBar
         sx={{
             '& .simplebar-content': {
@@ -14,7 +14,7 @@ const DrawerContent = () => (
             }
         }}
     >
-        <Navigation />
+        <Navigation user={user} />
         {/* <NavCard /> */}
     </SimpleBar>
 );

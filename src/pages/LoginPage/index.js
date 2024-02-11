@@ -12,8 +12,8 @@ export const LoginPage = connect(
         const selectInitialValues = createSelector(
             () => {
                 return {
-                    username: 'admin',//fromLocalStorage('username', null),
-                    password: "password",
+                    username: '', //fromLocalStorage('username', null),
+                    password: '',
                     rememberMe: fromLocalStorage('rememberMe', null) ? true : false,
                     showPassword: false,
                 }

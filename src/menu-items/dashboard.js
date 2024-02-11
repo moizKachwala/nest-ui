@@ -29,7 +29,7 @@ const icons = {
 const dashboard = {
     id: 'group-dashboard',
     title: 'Test',
-    type: 'group',
+    type: 'admin',
     children: [
         {
             id: 'chatPage',
