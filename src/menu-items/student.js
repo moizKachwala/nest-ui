@@ -15,7 +15,7 @@ const admin = {
             id: 'chatPage',
             title: 'Write Essay',
             type: 'item',
-            url: '/',
+            url: '/chat',
             icon: icons.DashboardOutlined,
             breadcrumbs: false
         }
