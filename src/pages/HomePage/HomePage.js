@@ -1,5 +1,12 @@
-export default function HomePage() {
+import Container from "@mui/material/Container";
+
+export default function LoginPage(props) {
+    // const { initialValues, loginPending, loginError, loginErrorMessage, 
+    //   actions: { sessionLogin } } = props;
+    
     return (
-        <h1>Home Page</h1>
+        <Container component="main" maxWidth="xs">
+            <h1>Homepage</h1>
+    </Container>
     );
 }

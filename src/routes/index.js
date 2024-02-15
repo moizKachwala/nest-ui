@@ -12,6 +12,7 @@ import MinimalLayout from 'layout/MinimalLayout';
 import LoginRoutes from './LoginRoutes';
 import MainRoutes from './MainRoutes';
 import HomePage from 'pages/HomePage/HomePage';
+import {StudentPage} from 'pages/studentPage';
 
 // ==============================|| ROUTING RENDER ||============================== //
 
@@ -34,6 +35,7 @@ export default function ThemeRoutes() {
           <Route path="/" element={<MainLayout />} >
             <Route path="*" element={<HomePage />} />
             <Route path="/chat" element={<ChatPage />} />
+            <Route path="/students" element={<StudentPage />} />
             <Route path="/logout" element={<LogoutPage />} />
           </Route>
         )}

@@ -1,9 +1,10 @@
 // assets
-import { DashboardOutlined } from '@ant-design/icons';
+import { DashboardOutlined, UserOutlined } from '@ant-design/icons';
 
 // icons
 const icons = {
-    DashboardOutlined
+    DashboardOutlined,
+    UserOutlined
 };
 
 // ==============================|| MENU ITEMS - DASHBOARD ||============================== //
@@ -33,10 +34,10 @@ const parent = {
     children: [
         {
             id: 'students',
-            title: 'students',
+            title: 'Students',
             type: 'item',
             url: '/students',
-            icon: icons.DashboardOutlined,
+            icon: icons.UserOutlined,
             breadcrumbs: false
         },
         {
