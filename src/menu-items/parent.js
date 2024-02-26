@@ -41,10 +41,10 @@ const parent = {
             breadcrumbs: false
         },
         {
-            id: 'essay',
-            title: 'Essay',
+            id: 'activities',
+            title: 'Activities',
             type: 'item',
-            url: '/chat',
+            url: '/activities',
             icon: icons.DashboardOutlined,
             breadcrumbs: false
         }

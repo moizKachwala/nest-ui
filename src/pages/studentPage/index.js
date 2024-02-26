@@ -5,6 +5,7 @@ import { createSelector } from 'reselect';
 import { getStudentByParent } from '../../store/actions/students.js';
 import { selectStudents } from '../../store/selectors/students.js';
 import {createStringDataField} from '../../utils/format.js';
+import {getAssociatedId} from '../../store/selectors/session.js';
 
 import StudentPageComponent from './StudentPage.js';
 
@@ -23,6 +24,7 @@ export const StudentPage = connect(
             students: selectStudents(state),
             studentListPending: state.students.list.pending,
             fields: selectFields(state),
+            getParentId: getAssociatedId(state),
         });
     },
     (dispatch) => ({

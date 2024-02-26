@@ -4,7 +4,6 @@ export const createStringDataField = (id, label, options = {}) => {
         id,
         label,
         renderString: (value) => {
-            console.log({value});
             if (typeof value === 'string') {
                 if (value) {
                     return value;

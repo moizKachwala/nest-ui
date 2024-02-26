@@ -8,11 +8,10 @@ import LogoutPage from "../pages/auth/LogoutPage";
 import MainLayout from 'layout/MainLayout';
 import MinimalLayout from 'layout/MinimalLayout';
 
-// project import
-import LoginRoutes from './LoginRoutes';
-import MainRoutes from './MainRoutes';
 import HomePage from 'pages/HomePage/HomePage';
 import {StudentPage} from 'pages/studentPage';
+import {ActivityPage} from 'pages/activityPage';
+import { EssayPage } from 'pages/EssayPage';
 
 // ==============================|| ROUTING RENDER ||============================== //
 
@@ -36,6 +35,8 @@ export default function ThemeRoutes() {
             <Route path="*" element={<HomePage />} />
             <Route path="/chat" element={<ChatPage />} />
             <Route path="/students" element={<StudentPage />} />
+            <Route path="/activities" element={<ActivityPage />} />
+            <Route path="/activity/essay" element={<EssayPage />} />
             <Route path="/logout" element={<LogoutPage />} />
           </Route>
         )}

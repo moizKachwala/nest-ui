@@ -3,11 +3,11 @@ import { useEffect } from "react";
 import { DataTable } from "../../common";
 
 export default function StudentPage(props) {
-    const { students, fields, studentListPending, actions: {studentGetByParent} } = props;
+    const { students, getParentId, fields, studentListPending, actions: {studentGetByParent} } = props;
 
     useEffect(() => {
-        studentGetByParent('acdd7fa5-3477-4ae7-b739-1b7f3fdfcf07');
-      }, [studentGetByParent]);
+        studentGetByParent(getParentId);
+      }, [studentGetByParent, getParentId]);
     
     return (
         <Container maxWidth="lg">
