@@ -21,7 +21,7 @@ export default function EssayPage(props) {
         actions: { getTitles, studentsGet, activityCreate }
     } = props;
     const [hint, setHint] = useState('');
-    const [checked, setChecked] = useState([0]);
+    const [checked, setChecked] = useState([]);
     // const [difficulty, setDifficulty] = useState('easy');
 
     const handleToggle = (value) => () => {
@@ -78,10 +78,10 @@ export default function EssayPage(props) {
                                     hints: 'some hints',
                                     wordLimit: 1000
                                 }
-                            ]
+                            ],
+                            assignments: checked.map((id) => ({studentId: id})),
                         }
-                        console.log('getting... paylod', payload);
-
+                        console.log({payload});
                         activityCreate(payload);
 
                         // shouldReloadGrid = true;
@@ -185,22 +185,22 @@ export default function EssayPage(props) {
                                     )}
 
                                     <Grid item xs={12}>
-                                         {students.map(({ studentId, user }) => (
+                                         {students.map(({ id, user }) => (
                                             <ListItem
-                                            key={studentId}
+                                            key={id}
                                             disablePadding
                                             >
-                                            <ListItemButton role={undefined} onClick={handleToggle(studentId)} dense>
+                                            <ListItemButton role={undefined} onClick={handleToggle(id)} dense>
                                                 <ListItemIcon>
                                                     <Checkbox
                                                     edge="start"
-                                                    checked={checked.indexOf(studentId) !== -1}
+                                                    checked={checked.indexOf(id) !== -1}
                                                     tabIndex={-1}
                                                     disableRipple
-                                                    inputProps={{ 'aria-labelledby': studentId }}
+                                                    inputProps={{ 'aria-labelledby': id }}
                                                     />
                                                 </ListItemIcon>
-                                                <ListItemText id={studentId} primary={`${user.firstName} ${user.lastName}`} />
+                                                <ListItemText id={id} primary={`${user.firstName} ${user.lastName}`} />
                                                 </ListItemButton>
                                             </ListItem>
                                         ))}
