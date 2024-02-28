@@ -8,13 +8,63 @@ const initialStatusState = {
 };
 
 const initialState = {
-    list: [],
+    data: [],
+    activity: {},
+    list: {
+        ...initialStatusState,
+    },
     create: {
+        ...initialStatusState,
+    },
+    get: {
         ...initialStatusState,
     },
 };
 
 export default createReducer(initialState, {
+    [actions.ACTIVITIES_GET_PENDING]: (state) => ({
+        ...state,
+        get: {
+            pending: true,
+        },
+    }),
+    [actions.ACTIVITIES_GET_FULFILLED]: (state, activity) => ({
+        ...state,
+        get: {
+            ...initialStatusState,
+        },
+        activity,
+    }),
+    [actions.ACTIVITIES_GET_REJECTED]: (state, errorMessage) => ({
+        ...state,
+        get: {
+            ...initialStatusState,
+            error: true,
+            errorMessage,
+        },
+    }),
+    [actions.ACTIVITIES_GET_BY_STUDENT_PENDING]: (state) => ({
+        ...state,
+        list: {
+            pending: true,
+        },
+        data: []
+    }),
+    [actions.ACTIVITIES_GET_BY_STUDENT_FULFILLED]: (state, activities) => ({
+        ...state,
+        list: {
+            ...initialStatusState,
+        },
+        data: activities,
+    }),
+    [actions.ACTIVITIES_GET_BY_STUDENT_REJECTED]: (state, errorMessage) => ({
+        ...state,
+        list: {
+            ...initialStatusState,
+            error: true,
+            errorMessage,
+        },
+    }),
     [actions.ACTIVITIES_CREATE_PENDING]: (state) => ({
         ...state,
         create: {

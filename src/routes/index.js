@@ -12,6 +12,8 @@ import HomePage from 'pages/HomePage/HomePage';
 import {StudentPage} from 'pages/studentPage';
 import {ActivityPage} from 'pages/activityPage';
 import { EssayPage } from 'pages/EssayPage';
+import { StudentActivityPage } from 'pages/studentActivityPage';
+import {AssignmentPage} from 'pages/studentActivityPage/AssignmentPage';
 
 // ==============================|| ROUTING RENDER ||============================== //
 
@@ -37,6 +39,8 @@ export default function ThemeRoutes() {
             <Route path="/students" element={<StudentPage />} />
             <Route path="/activities" element={<ActivityPage />} />
             <Route path="/activity/essay" element={<EssayPage />} />
+            <Route path="/student/activities" element={<StudentActivityPage />} />
+            <Route path="/activity/:activityId" element={<AssignmentPage />} />
             <Route path="/logout" element={<LogoutPage />} />
           </Route>
         )}

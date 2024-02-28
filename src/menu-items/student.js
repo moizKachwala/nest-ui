@@ -12,10 +12,10 @@ const admin = {
     type: 'student',
     children: [
         {
-            id: 'chatPage',
-            title: 'Write Essay',
+            id: 'activity',
+            title: 'My Activities',
             type: 'item',
-            url: '/chat',
+            url: '/student/activities',
             icon: icons.DashboardOutlined,
             breadcrumbs: false
         }
