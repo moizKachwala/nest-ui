@@ -6,6 +6,7 @@ import {
 import {
     headersAuthSendReceiveJson,
     headersAuthReceiveJson,
+    headersAuthSendReceiveTextHtml,
 } from '../headers';
 import { apiHandleResponse } from '../../utils/api';
 
@@ -31,8 +32,17 @@ const getActivitiesByStudent = (studentId) => {
     }).then(apiHandleResponse);
 };
 
+const validateEssay = (options) => {
+    return fetch(`${SERVER_URL}/activity-assignment/validateEssay`, {
+        method: METHOD_POST,
+        headers: headersAuthSendReceiveTextHtml(),
+        body: JSON.stringify(options),
+    }).then(apiHandleResponse);
+};
+
 export {
     create,
     get,
     getActivitiesByStudent,
+    validateEssay,
 };

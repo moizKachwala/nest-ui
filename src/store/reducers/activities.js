@@ -10,6 +10,7 @@ const initialStatusState = {
 const initialState = {
     data: [],
     activity: {},
+    validations: '',
     list: {
         ...initialStatusState,
     },
@@ -19,6 +20,9 @@ const initialState = {
     get: {
         ...initialStatusState,
     },
+    validate: {
+        ...initialStatusState,
+    }
 };
 
 export default createReducer(initialState, {
@@ -80,6 +84,27 @@ export default createReducer(initialState, {
     [actions.ACTIVITIES_CREATE_REJECTED]: (state, errorMessage) => ({
         ...state,
         create: {
+            ...initialStatusState,
+            error: true,
+            errorMessage,
+        },
+    }),
+    [actions.ACTIVITIES_SUBMIT_PENDING]: (state) => ({
+        ...state,
+        validate: {
+            pending: true,
+        },
+    }),
+    [actions.ACTIVITIES_SUBMIT_FULFILLED]: (state, validations) => ({
+        ...state,
+        validate: {
+            ...initialStatusState,
+        },
+        validations,
+    }),
+    [actions.ACTIVITIES_SUBMIT_REJECTED]: (state, errorMessage) => ({
+        ...state,
+        validate: {
             ...initialStatusState,
             error: true,
             errorMessage,

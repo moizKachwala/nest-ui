@@ -13,6 +13,11 @@ export const ACTIVITIES_GET_BY_STUDENT_PENDING = 'ACTIVITIES_GET_BY_STUDENT_PEND
 export const ACTIVITIES_GET_BY_STUDENT_FULFILLED = 'ACTIVITIES_GET_BY_STUDENT_FULFILLED';
 export const ACTIVITIES_GET_BY_STUDENT_REJECTED = 'ACTIVITIES_GET_BY_STUDENT_REJECTED'; 
 
+export const ACTIVITIES_SUBMIT = 'ACTIVITIES_SUBMIT';
+export const ACTIVITIES_SUBMIT_PENDING = 'ACTIVITIES_SUBMIT_PENDING';
+export const ACTIVITIES_SUBMIT_FULFILLED = 'ACTIVITIES_SUBMIT_FULFILLED';
+export const ACTIVITIES_SUBMIT_REJECTED = 'ACTIVITIES_SUBMIT_REJECTED';
+
 export const create = (activity, callback) => ({
     type: ACTIVITIES_CREATE,
     payload: { activity, callback },
@@ -26,4 +31,9 @@ export const get = (activityId, callback) => ({
 export const getActivitiesByStudent = (studentId, callback) => ({
     type: ACTIVITIES_GET_BY_STUDENT,
     payload: { studentId, callback },
+});
+
+export const submitActivity = (essay) => ({
+    type: ACTIVITIES_SUBMIT,
+    payload: {essay}
 });

@@ -14,6 +14,7 @@ export default function AssignmentPage(props) {
         actions: { validateEssay }
     } = props;
     console.log({assignedActivity});
+    const essayTitle = assignedActivity?.activity?.questions[0].title;
     // const [hint, setHint] = useState('');
     // const [difficulty, setDifficulty] = useState('easy');
 
@@ -38,9 +39,9 @@ export default function AssignmentPage(props) {
                     initialValues={initialValues}
                     validate={values => {
                         const errors = {};
-                        if (!values.title) {
-                            errors.title = 'title is required'
-                        }
+                        // if (!values.title) {
+                        //     errors.title = 'title is required'
+                        // }
 
                         if (!values.content) {
                             errors.content = 'content is required'
@@ -51,7 +52,8 @@ export default function AssignmentPage(props) {
                     onSubmit={(values, { setStatus, setSubmitting }) => {
 
                         let payload = {
-                            title: values.title,
+                            assignmentId: assignedActivity.id,
+                            title: essayTitle,
                             content: values.content
                         }
 

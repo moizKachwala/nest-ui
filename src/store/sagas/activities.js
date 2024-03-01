@@ -63,8 +63,24 @@ function* get(action) {
     }
 }
 
+function* validateEssay(action) {
+    try {
+        yield put({ type: actions.ACTIVITIES_SUBMIT_PENDING });
+        const {
+            essay
+        } = action.payload;
+        const payload = yield call(API.validateEssay, essay);        
+        yield put({ type: actions.ACTIVITIES_SUBMIT_FULFILLED, payload });
+    } catch (error) {
+        const { error: errorMessage } = (error && error.payload) || { error: '' };
+        yield put({ type: actions.ACTIVITIES_SUBMIT_REJECTED, payload: errorMessage });
+        yield call(sessionErrorHandling, error);
+    }
+}
+
 export default function*() {
     yield takeEvery(actions.ACTIVITIES_CREATE, create);
     yield takeEvery(actions.ACTIVITIES_GET_BY_STUDENT, getByStudent);
     yield takeEvery(actions.ACTIVITIES_GET, get);
+    yield takeEvery(actions.ACTIVITIES_SUBMIT, validateEssay);
 }
