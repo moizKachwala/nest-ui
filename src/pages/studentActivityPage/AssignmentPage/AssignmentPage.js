@@ -11,10 +11,10 @@ export default function AssignmentPage(props) {
     // const { activityId } = useParams();
     const { essayTitlesPending, validatePending, initialValues, assignedActivity,
         validations,
-        actions: { validateEssay }
+        actions: { submitAssignment }
     } = props;
     console.log({assignedActivity});
-    const essayTitle = assignedActivity?.activity?.questions[0].title;
+    const questionId = assignedActivity?.activity?.questions[0].id;
     // const [hint, setHint] = useState('');
     // const [difficulty, setDifficulty] = useState('easy');
 
@@ -52,12 +52,15 @@ export default function AssignmentPage(props) {
                     onSubmit={(values, { setStatus, setSubmitting }) => {
 
                         let payload = {
-                            assignmentId: assignedActivity.id,
-                            title: essayTitle,
-                            content: values.content
+                            responses: [
+                                {
+                                    questionId,
+                                    answer: values.content
+                                }
+                            ]
                         }
 
-                        validateEssay(payload);
+                        submitAssignment(assignedActivity.id, payload);
 
                         // shouldReloadGrid = true;
                         // let payload = {

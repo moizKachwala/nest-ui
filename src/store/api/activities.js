@@ -32,11 +32,11 @@ const getActivitiesByStudent = (studentId) => {
     }).then(apiHandleResponse);
 };
 
-const validateEssay = (options) => {
-    return fetch(`${SERVER_URL}/activity-assignment/validateEssay`, {
+const submitAssignment = (assignmentId, response) => {
+    return fetch(`${SERVER_URL}/activity-assignment/${assignmentId}/submit`, {
         method: METHOD_POST,
-        headers: headersAuthSendReceiveTextHtml(),
-        body: JSON.stringify(options),
+        headers: headersAuthSendReceiveJson(),
+        body: JSON.stringify(response),
     }).then(apiHandleResponse);
 };
 
@@ -44,5 +44,5 @@ export {
     create,
     get,
     getActivitiesByStudent,
-    validateEssay,
+    submitAssignment,
 };

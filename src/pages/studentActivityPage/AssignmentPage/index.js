@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AssignmentComponent from './AssignmentPage';
-import {get, submitActivity} from '../../../store/actions/activities';
+import {get, submitAssignment} from '../../../store/actions/activities';
 import {createActivitySelector} from '../../../store/selectors/activities';
 import { createSelector } from 'reselect';
 import {useParams} from 'react-router-dom';
@@ -34,7 +34,7 @@ export const AssignmentPage = connect(
     (dispatch, props) => ({
         actions: bindActionCreators({
             getActivity: get,
-            validateEssay: submitActivity,
+            submitAssignment: submitAssignment,
         }, dispatch)
     })
 )(AssignmentComponent);
