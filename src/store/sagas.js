@@ -10,5 +10,6 @@ export function initSagas() {
         yield fork(require('./sagas/students').default);
         yield fork(require('./sagas/activityTypes').default);
         yield fork(require('./sagas/activities').default);
+        yield fork(require('./sagas/activityAssignments').default);
     });
 }

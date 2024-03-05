@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 // import { createSelector } from 'reselect';
 
 import StudentActivityPageComponent from './StudentActivityPage.js';
-import { getActivitiesByStudent } from '../../store/actions/activities.js';
+import { getByStudent } from '../../store/actions/activityAssignments.js';
 import {getAssociatedId} from '../../store/selectors/session';
 // import { selectLoginPending, selectLoginError, selectLoginErrorMessage } from '../../store/selectors/session';
 // import { fromLocalStorage } from '../../utils/storage.js';
@@ -21,7 +21,7 @@ export const StudentActivityPage = connect(
         //     }
         // );
         return (state, props) => ({
-            data: state.activities.data,
+            data: state.activityAssignments.data,
             studentId: getAssociatedId(state, props),
             // getParentId: getAssociatedId(state, props),
             // loginPending: selectLoginPending(state),
@@ -32,7 +32,7 @@ export const StudentActivityPage = connect(
     },
     (dispatch) => ({
         actions: bindActionCreators({
-            getActivities: getActivitiesByStudent,
+            getActivities: getByStudent,
         }, dispatch)
     })
 )(StudentActivityPageComponent);

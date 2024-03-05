@@ -27,7 +27,7 @@ export default function ActivityPage(props) {
                         onClick={() => handleCardClick(id)}
                     >
                         <CardContent>
-                        <Link to={`/activity/${activity.id}`}>
+                        <Link to={`/activity/${id}`}>
                             <Typography variant="h5" component="div">
                                 {activity.name}
                             </Typography>

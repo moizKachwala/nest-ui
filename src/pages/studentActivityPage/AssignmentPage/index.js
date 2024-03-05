@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AssignmentComponent from './AssignmentPage';
-import {get, submitAssignment} from '../../../store/actions/activities';
-import {createActivitySelector} from '../../../store/selectors/activities';
+import {get, submit} from '../../../store/actions/activityAssignments';
+import {selectedActivity} from '../../../store/selectors/activityAssignments';
 import { createSelector } from 'reselect';
 import {useParams} from 'react-router-dom';
 
 export const AssignmentPage = connect(
     () => {
-        let { activityId } = useParams();
-        const selectActivityId = () => activityId;
-        const selectAssignedActivity = createActivitySelector(selectActivityId);
+        let { activityAssignmentId } = useParams();
+        console.log('activityAssignmentId', {activityAssignmentId});
+        const selectActivityId = () => activityAssignmentId;
 
         const selectMode = (state) => state.chat.titles;
         const selectInitialValues = createSelector(
@@ -27,14 +27,14 @@ export const AssignmentPage = connect(
             validatePending: state.chat.validate.pending,
             validations: state.chat.validations,
             initialValues: selectInitialValues(state, props),
-            assignedActivity: selectAssignedActivity(state, props),
-            // activityId: selectActivityId(state, props),
+            assignedActivity: selectedActivity(state, props),
+            activityId: selectActivityId(state, props),
         });
     },
     (dispatch, props) => ({
         actions: bindActionCreators({
-            getActivity: get,
-            submitAssignment: submitAssignment,
+            getAssignedActivityById: get,
+            submitAssignment: submit,
         }, dispatch)
     })
 )(AssignmentComponent);

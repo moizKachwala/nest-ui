@@ -6,6 +6,7 @@ import session from './session';
 import students from './students';
 import activityTypes from './activityTypes';
 import activities from './activities';
+import activityAssignments from './activityAssignments';
 
 export const rootReducer = combineReducers({
     chat,
@@ -14,6 +15,7 @@ export const rootReducer = combineReducers({
     students,
     activityTypes,
     activities,
+    activityAssignments,
 });
 
 export default rootReducer;

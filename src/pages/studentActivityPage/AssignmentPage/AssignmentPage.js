@@ -6,21 +6,22 @@ import FormControl from '@mui/material/FormControl';
 import { Formik } from "formik";
 import {useParams} from 'react-router-dom';
 
+
 export default function AssignmentPage(props) {
 
     // const { activityId } = useParams();
     const { essayTitlesPending, validatePending, initialValues, assignedActivity,
         validations,
-        actions: { submitAssignment }
+        actions: { getAssignedActivityById, submitAssignment }
     } = props;
-    console.log({assignedActivity});
+    let { activityAssignmentId } = useParams();
     const questionId = assignedActivity?.activity?.questions[0].id;
     // const [hint, setHint] = useState('');
     // const [difficulty, setDifficulty] = useState('easy');
 
-    // useEffect(() => {
-    //     getActivity(activityId);
-    // }, [getActivity, activityId]);
+    useEffect(() => {
+        getAssignedActivityById(activityAssignmentId);
+    }, [getAssignedActivityById, activityAssignmentId]);
 
     // function handleTitleChange(event, handleChange) {
     //     handleChange(event);
@@ -95,7 +96,7 @@ export default function AssignmentPage(props) {
                             <div>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        {assignedActivity.activity.questions[0].title}
+                                        {assignedActivity?.activity?.questions[0].title}
                                     </Grid>
                                     <Grid item xs={12}>
                                         <FormControl fullWidth>

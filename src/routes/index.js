@@ -40,7 +40,7 @@ export default function ThemeRoutes() {
             <Route path="/activities" element={<ActivityPage />} />
             <Route path="/activity/essay" element={<EssayPage />} />
             <Route path="/student/activities" element={<StudentActivityPage />} />
-            <Route path="/activity/:activityId" element={<AssignmentPage />} />
+            <Route path="/activity/:activityAssignmentId" element={<AssignmentPage />} />
             <Route path="/logout" element={<LogoutPage />} />
           </Route>
         )}
