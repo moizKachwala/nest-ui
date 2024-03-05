@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import {Container, Card, CardContent, Typography} from "@mui/material";
 import ChatPage from "pages/ChatPage/ChatPage";
 import { Link } from 'react-router-dom';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 export default function ActivityPage(props) {
     const { data, studentId,
@@ -16,27 +18,26 @@ export default function ActivityPage(props) {
         
       };
 
+      const isCompleted = true;
     return (
         <Container component="main" maxWidth="sm">
             <h1>ActivityPage</h1>
             <div>
                 {data.map(({id, activity}) => (
                     <div key={id}>
-                    <Card 
-                        sx={{ minWidth: 275, marginBottom: 2, cursor: 'pointer' }} 
-                        onClick={() => handleCardClick(id)}
-                    >
-                        <CardContent>
-                        <Link to={`/activity/${id}`}>
-                            <Typography variant="h5" component="div">
+                   <Card  onClick={() => handleCardClick(id)}>
+                        <CardContent >
+                            <Link to={`/activity/${id}`}>
+                            <Typography variant="h5" component="div" gutterBottom>
                                 {activity.name}
                             </Typography>
                             <Typography variant="body2">
                                 {activity.questions[0].title}
                             </Typography>
-                        </Link>
+                            </Link>
                         </CardContent>
-                    </Card>
+                        
+                        </Card>
                     {/* Conditionally render EssayActivity component */}
                     {selectedCard === id && <ChatPage />}
                     </div>

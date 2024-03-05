@@ -1,49 +1,33 @@
 import { useEffect, useState } from "react";
 import {
-    Container, CircularProgress, Button, TextField, Grid
+    Container, CircularProgress, Button, TextField, Grid,
+    Paper,Typography,
 } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import { Formik } from "formik";
 import {useParams} from 'react-router-dom';
 
-
 export default function AssignmentPage(props) {
-
-    // const { activityId } = useParams();
     const { essayTitlesPending, validatePending, initialValues, assignedActivity,
         validations,
         actions: { getAssignedActivityById, submitAssignment }
     } = props;
     let { activityAssignmentId } = useParams();
     const questionId = assignedActivity?.activity?.questions[0].id;
-    // const [hint, setHint] = useState('');
-    // const [difficulty, setDifficulty] = useState('easy');
-
+    
     useEffect(() => {
         getAssignedActivityById(activityAssignmentId);
     }, [getAssignedActivityById, activityAssignmentId]);
 
-    // function handleTitleChange(event, handleChange) {
-    //     handleChange(event);
-    //     const title = titles.find(x => x.title === event.target.value);
-    //     if (title) {
-    //         setHint(title.hint);
-    //     }
-    // }
-
     return (
         <div>
             <Container maxWidth="lg">
-                <h1>Essay {(essayTitlesPending || validatePending) && <CircularProgress size={20} />} </h1>
-                <Formik
+            <Formik
                     enableReinitialize={true}
                     initialValues={initialValues}
                     validate={values => {
                         const errors = {};
-                        // if (!values.title) {
-                        //     errors.title = 'title is required'
-                        // }
-
+                        
                         if (!values.content) {
                             errors.content = 'content is required'
                         }
@@ -62,24 +46,6 @@ export default function AssignmentPage(props) {
                         }
 
                         submitAssignment(assignedActivity.id, payload);
-
-                        // shouldReloadGrid = true;
-                        // let payload = {
-                        //     name: values.name,
-                        //     description: values.description,
-                        //     ein: values.ein,
-                        //     active: values.active,
-                        // }
-                        // if (mode === 'create') {
-                        //     facilityCreate(payload, handleCallback, shouldReloadGrid);
-                        // }
-                        // else {
-                        //     payload = {
-                        //         ...payload,
-                        //         id: values.id,
-                        //     }
-                        //     facilityUpdate(payload, handleCallback, shouldReloadGrid);
-                        // }
                     }}
                 >
                     {({
@@ -112,7 +78,7 @@ export default function AssignmentPage(props) {
                                                 }}
                                                 onBlur={handleBlur}
                                                 onChange={handleChange}
-                                                value={values.content}
+                                                value={assignedActivity.completed ? assignedActivity?.questionResponses[0]?.answer : values.content}
                                                 helperText={touched.content && errors.content}
                                                 error={Boolean(touched.content && errors.content)}
                                             />
@@ -127,7 +93,7 @@ export default function AssignmentPage(props) {
                                             color="primary"
                                             // className={classes.button}
                                             type="submit"
-                                            disabled={essayTitlesPending || validatePending}
+                                            disabled={assignedActivity.completed || essayTitlesPending || validatePending}
                                         >
                                             {(essayTitlesPending || validatePending) ? 'Evaluate Changes' : 'Evaluate'}
                                         </Button>
@@ -135,11 +101,11 @@ export default function AssignmentPage(props) {
                                     </Grid>
                                 </Grid>
                                 
-                                {validations && (
+                                {assignedActivity.completed && (
                                     <Grid container>
                                         <Grid item xs={12}>
-                                            <h1>Response</h1>
-                                            <div dangerouslySetInnerHTML={{ __html: validations.replace(/\n/g, '<br />')}} />
+                                            <h1>{Response}</h1>
+                                            <div dangerouslySetInnerHTML={{ __html: assignedActivity?.questionResponses[0]?.validation.replace(/\n/g, '<br />')}} />
                                         </Grid>
                                     </Grid>
                                 )}
@@ -147,7 +113,6 @@ export default function AssignmentPage(props) {
                         </form>
                     )}
                 </Formik>
-
             </Container>
         </div>
     );
