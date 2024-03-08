@@ -2,13 +2,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // import { createSelector } from 'reselect';
 
-import ActivityPageComponent from './ActivityPage.js';
+import ActivitiesPageComponent from './ActivitiesPage.js';
 import { list } from '../../store/actions/activityTypes.js';
 import {getAssociatedId} from '../../store/actions/session.js';
 // import { selectLoginPending, selectLoginError, selectLoginErrorMessage } from '../../store/selectors/session';
 // import { fromLocalStorage } from '../../utils/storage.js';
 
-export const ActivityPage = connect(
+export const ActivitiesPage = connect(
     () => {
         // const selectInitialValues = createSelector(
         //     () => {
@@ -34,4 +34,4 @@ export const ActivityPage = connect(
             activityTypesList: list
         }, dispatch)
     })
-)(ActivityPageComponent);
+)(ActivitiesPageComponent);

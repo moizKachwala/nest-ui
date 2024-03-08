@@ -10,7 +10,8 @@ import MinimalLayout from 'layout/MinimalLayout';
 
 import HomePage from 'pages/HomePage/HomePage';
 import {StudentPage} from 'pages/studentPage';
-import {ActivityPage} from 'pages/activityPage';
+import {ActivitiesPage} from 'pages/activitiesPage';
+import {ActivitiesEditPage} from 'pages/activitiesPage/activitiesEditPage';
 import { EssayPage } from 'pages/EssayPage';
 import { StudentActivityPage } from 'pages/studentActivityPage';
 import {AssignmentPage} from 'pages/studentActivityPage/AssignmentPage';
@@ -37,7 +38,8 @@ export default function ThemeRoutes() {
             <Route path="*" element={<HomePage />} />
             <Route path="/chat" element={<ChatPage />} />
             <Route path="/students" element={<StudentPage />} />
-            <Route path="/activities" element={<ActivityPage />} />
+            <Route path="/activities" element={<ActivitiesPage />} />
+            <Route path="/activities/:activityTypeId" element={<ActivitiesEditPage />} />
             <Route path="/activity/essay" element={<EssayPage />} />
             <Route path="/student/activities" element={<StudentActivityPage />} />
             <Route path="/activity/:activityAssignmentId" element={<AssignmentPage />} />

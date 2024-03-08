@@ -6,7 +6,7 @@ import SubjectIcon from '@mui/icons-material/Subject';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CalculateIcon from '@mui/icons-material/Calculate';
 
-export default function ActivityPage(props) {
+export default function ActivitiesPage(props) {
     const getIcon = (type, color) => {
         switch (type) {
             case 'essay':
@@ -35,7 +35,7 @@ export default function ActivityPage(props) {
     return (
         <Container component="main" maxWidth="md">
             <Typography variant="h4" component="h1" gutterBottom>
-                ActivityPage
+                Activities Page
             </Typography>
             {data.map(item => (
                 <Card 
@@ -46,7 +46,7 @@ export default function ActivityPage(props) {
                         {getIcon(item.type, item.iconColor)}
                     </IconButton>
                     <CardActionArea onClick={() => handleCardClick(item.id)} sx={{ display: 'flex', flexGrow: 1 }}>
-                        <Link to="/activity/essay" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexGrow: 1, alignItems: 'center' }}>
+                        <Link to={`/activities/${item.id}`} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexGrow: 1, alignItems: 'center' }}>
                             <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <Typography variant="h5" component="div" gutterBottom>
                                     {item.name}
