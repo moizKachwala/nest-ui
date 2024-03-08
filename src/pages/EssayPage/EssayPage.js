@@ -75,7 +75,7 @@ export default function EssayPage(props) {
                             questions: [
                                 {
                                     title: values.title,
-                                    hints: 'some hints',
+                                    hints: hint,
                                     wordLimit: 1000
                                 }
                             ],

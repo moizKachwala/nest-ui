@@ -1,9 +1,25 @@
 import { useEffect, useState } from "react";
-import {Container, Card, CardContent, Typography} from "@mui/material";
-import ChatPage from "pages/ChatPage/ChatPage";
+// import ChatPage from "pages/ChatPage/ChatPage";
 import { Link } from 'react-router-dom';
+import {Container, Card, CardContent, Typography, CardActionArea, CardActions, IconButton} from "@mui/material";
+import SubjectIcon from '@mui/icons-material/Subject';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import CalculateIcon from '@mui/icons-material/Calculate';
 
 export default function ActivityPage(props) {
+    const getIcon = (type, color) => {
+        switch (type) {
+            case 'essay':
+                return <SubjectIcon sx={{ color }} />;
+            case 'mcq':
+                return <CheckCircleOutlineIcon sx={{ color }} />;
+            case 'math':
+                return <CalculateIcon sx={{ color }} />;
+            default:
+                return <SubjectIcon sx={{ color }} />;
+        }
+    };
+
     const { data, 
       actions: { activityTypesList } } = props;
     const [selectedCard, setSelectedCard] = useState(null);
@@ -17,32 +33,32 @@ export default function ActivityPage(props) {
       };
 
     return (
-        <Container component="main" maxWidth="xs">
-            <h1>ActivityPage</h1>
-            <div>
-                {data.map(item => (
-                    <div key={item.id}>
-                    <Card 
-                        sx={{ minWidth: 275, marginBottom: 2, cursor: 'pointer' }} 
-                        onClick={() => handleCardClick(item.id)}
-                    >
-                        <CardContent>
-                        <Link to="/activity/essay">
-                            <Typography variant="h5" component="div">
-                                {item.name}
-                            </Typography>
-                            <Typography variant="body2">
-                                {item.description}
-                            </Typography>
+        <Container component="main" maxWidth="md">
+            <Typography variant="h4" component="h1" gutterBottom>
+                ActivityPage
+            </Typography>
+            {data.map(item => (
+                <Card 
+                    key={item.id} 
+                    sx={{ display: 'flex', alignItems: 'center', marginBottom: 2, '&:hover': { boxShadow: 6 }, pl: 2 }} 
+                >
+                    <IconButton edge="start" sx={{ marginRight: 1, color: 'inherit' }}>
+                        {getIcon(item.type, item.iconColor)}
+                    </IconButton>
+                    <CardActionArea onClick={() => handleCardClick(item.id)} sx={{ display: 'flex', flexGrow: 1 }}>
+                        <Link to="/activity/essay" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexGrow: 1, alignItems: 'center' }}>
+                            <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
+                                <Typography variant="h5" component="div" gutterBottom>
+                                    {item.name}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    {item.description}
+                                </Typography>
+                            </CardContent>
                         </Link>
-                        </CardContent>
-                    </Card>
-                    {/* Conditionally render EssayActivity component */}
-                    {selectedCard === item.id && <ChatPage />}
-                    </div>
-                ))}
-                </div>
-            
-    </Container>
+                    </CardActionArea>
+                </Card>
+            ))}
+        </Container>
     );
 }

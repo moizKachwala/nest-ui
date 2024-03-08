@@ -24,7 +24,7 @@ export const EssayPage = connect(
 
         return (state, props) => ({
             essayTitlesPending: state.chat.getTitle.pending,
-            validatePending: state.chat.validate.pending,
+            // activityCreatePending: state.activitvalidate.pending,
             titles: state.chat.titles,
             validations: state.chat.validations,
             initialValues: selectInitialValues(state, props),
