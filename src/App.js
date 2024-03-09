@@ -5,13 +5,16 @@ import ScrollTop from './components/ScrollTop';
 // import { ChatPage } from './pages/ChatPage';
 import Routes from './routes';
 // import {Routes} from './router/Routes';
+import { ToastProvider } from './context/ToastContext';
 
 function App() {
   return (
     <ThemeCustomization>
       <ScrollTop>
-        <Routes />
-      </ScrollTop>      
+        <ToastProvider>
+          <Routes />
+        </ToastProvider>
+      </ScrollTop>
     </ThemeCustomization>
   );
 }

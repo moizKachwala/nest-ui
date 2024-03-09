@@ -21,7 +21,8 @@ function* create(action) {
             callback();
         }
     } catch (error) {
-        const { error: errorMessage } = (error && error.payload) || { error: '' };
+        
+        const { message: errorMessage } = (error && error.payload) || { error: '' };
         yield put({ type: actions.ACTIVITIES_CREATE_REJECTED, payload: errorMessage });
         yield call(sessionErrorHandling, error);
     }

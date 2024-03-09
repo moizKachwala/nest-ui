@@ -23,8 +23,9 @@ export const AssignmentPage = connect(
         )
 
         return (state, props) => ({
-            // essayTitlesPending: state.chat.getTitle.pending,
-            validatePending: state.chat.validate.pending,
+            activityAssignmentsPending: state.activityAssignments.submit.pending,
+            activityAssignmentsError: state.activityAssignments.submit.error,
+            activityAssignmentsErrorMessage: state.activityAssignments.submit.errorMessage,
             validations: state.chat.validations,
             initialValues: selectInitialValues(state, props),
             assignedActivity: selectedActivity(state, props),

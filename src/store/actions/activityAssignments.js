@@ -23,7 +23,7 @@ export const getByStudent = (studentId, callback) => ({
     payload: { studentId, callback },
 });
 
-export const submit = (assignmentId, response) => ({
+export const submit = (assignmentId, response, callback) => ({
     type: ACTIVITY_ASSIGNMENTS_SUBMIT,
-    payload: {assignmentId, response}
+    payload: {assignmentId, response, callback}
 });

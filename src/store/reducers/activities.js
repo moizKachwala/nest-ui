@@ -12,6 +12,9 @@ const initialState = {
     activity: {},
     get: {
         ...initialStatusState,
+    },
+    create: {
+        ...initialStatusState,
     }
 };
 
@@ -32,6 +35,26 @@ export default createReducer(initialState, {
     [actions.ACTIVITIES_GET_REJECTED]: (state, errorMessage) => ({
         ...state,
         get: {
+            ...initialStatusState,
+            error: true,
+            errorMessage,
+        },
+    }),
+    [actions.ACTIVITIES_CREATE_PENDING]: (state) => ({
+        ...state,
+        create: {
+            pending: true,
+        },
+    }),
+    [actions.ACTIVITIES_CREATE_FULFILLED]: (state) => ({
+        ...state,
+        create: {
+            ...initialStatusState,
+        },
+    }),
+    [actions.ACTIVITIES_CREATE_REJECTED]: (state, errorMessage) => ({
+        ...state,
+        create: {
             ...initialStatusState,
             error: true,
             errorMessage,

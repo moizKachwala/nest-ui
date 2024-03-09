@@ -44,10 +44,15 @@ function* submitAssignment(action) {
         yield put({ type: actions.ACTIVITY_ASSIGNMENTS_SUBMIT_PENDING });
         const {
             assignmentId,
-            response
+            response,
+            callback
         } = action.payload;
         const payload = yield call(API.submitAssignment, assignmentId, response);        
         yield put({ type: actions.ACTIVITY_ASSIGNMENTS_SUBMIT_FULFILLED, payload });
+
+        if (callback) {
+            callback();
+        }
     } catch (error) {
         const { error: errorMessage } = (error && error.payload) || { error: '' };
         yield put({ type: actions.ACTIVITY_ASSIGNMENTS_SUBMIT_REJECTED, payload: errorMessage });

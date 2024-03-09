@@ -12,17 +12,27 @@ import List from '@mui/material/List';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
+import {useParams} from 'react-router-dom';
+import {renderErrorMessage} from '../../../utils/error';
+import { useToast } from '../../../context/ToastContext';
 
 export default function ActivitiesEditPage(props) {
 
     const { essayTitlesPending, validatePending, initialValues, titles,
-        getParentId, students,
-        validations,
+        getParentId, students, activityCreatePending,
         actions: { getTitles, studentsGet, activityCreate }
     } = props;
+    let { activityTypeId } = useParams();
+    const { showToast } = useToast();
+
     const [hint, setHint] = useState('');
     const [checked, setChecked] = useState([]);
     // const [difficulty, setDifficulty] = useState('easy');
+
+    function callback() {
+        showToast('Activity successfully created', 'success');
+        setChecked([]);
+    }
 
     const handleToggle = (value) => () => {
         const currentIndex = checked.indexOf(value);
@@ -50,10 +60,17 @@ export default function ActivitiesEditPage(props) {
         }
     }
 
+    const renderMessage = () => {
+        const {
+          activityCreateError, activityCreateErrorMessage,
+        } = props;
+        return renderErrorMessage(activityCreateError, activityCreateErrorMessage);
+      }
+
     return (
         <div>
             <Container maxWidth="lg">
-                <h1>Assign an essay activity {(essayTitlesPending || validatePending) && <CircularProgress size={20} />} </h1>
+                <h1>Assign an essay activity {(essayTitlesPending || activityCreatePending) && <CircularProgress size={20} />} </h1>
                 <Formik
                     enableReinitialize={true}
                     initialValues={initialValues}
@@ -70,8 +87,8 @@ export default function ActivitiesEditPage(props) {
                         let payload = {
                             name: 'Essay Activity',
                             description: 'essay writing',
-                            activityTypeId: 'b5e57316-b090-49d4-9cc2-d9ba9abb1964',
-                            subjectId: '872513a2-d407-4518-97e6-e4838cd084fa',
+                            activityTypeId: activityTypeId,
+                            subjectId: '2f82cf72-5787-41e1-a9c0-2e0bd50a8a36',
                             questions: [
                                 {
                                     title: values.title,
@@ -82,7 +99,7 @@ export default function ActivitiesEditPage(props) {
                             assignments: checked.map((id) => ({studentId: id})),
                         }
                         console.log({payload});
-                        activityCreate(payload);
+                        activityCreate(payload, callback);
 
                         // shouldReloadGrid = true;
                         // let payload = {
@@ -116,11 +133,12 @@ export default function ActivitiesEditPage(props) {
                         <form onSubmit={handleSubmit} noValidate autoComplete="off">
                             <div>
                                 <Grid container spacing={2}>
-                                    {/* <Grid item xs={12}>
+                                    <Grid item xs={12}>
                                             <div className="error">
+                                                Moiz
                                                 {renderMessage()}
                                             </div>
-                                        </Grid> */}
+                                        </Grid>
 
                                     <Grid item xs={12}>
                                         {/* {titles.map(({ title }) => (
@@ -214,11 +232,11 @@ export default function ActivitiesEditPage(props) {
                                             color="primary"
                                             // className={classes.button}
                                             type="submit"
-                                            disabled={essayTitlesPending || validatePending}
+                                            disabled={essayTitlesPending || activityCreatePending}
                                         >
-                                            {(essayTitlesPending || validatePending) ? 'Assigning...' : 'Assign Activity'}
+                                            {(activityCreatePending || essayTitlesPending ) ? 'Assigning...' : 'Assign Activity'}
                                         </Button>
-                                        &nbsp; {validatePending && <CircularProgress size={20} />}
+                                        &nbsp; {activityCreatePending && <CircularProgress size={20} />}
                                     </Grid>
                                 </Grid>
                             </div>

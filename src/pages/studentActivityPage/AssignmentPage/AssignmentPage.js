@@ -6,18 +6,26 @@ import {
 import FormControl from '@mui/material/FormControl';
 import { Formik } from "formik";
 import {useParams} from 'react-router-dom';
+import { useToast } from '../../../context/ToastContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function AssignmentPage(props) {
-    const { essayTitlesPending, validatePending, initialValues, assignedActivity,
-        validations,
+    const { activityAssignmentsPending, initialValues, assignedActivity,
         actions: { getAssignedActivityById, submitAssignment }
     } = props;
     let { activityAssignmentId } = useParams();
     const questionId = assignedActivity?.activity?.questions[0].id;
+    const { showToast } = useToast();
+    let navigate = useNavigate();
     
     useEffect(() => {
         getAssignedActivityById(activityAssignmentId);
     }, [getAssignedActivityById, activityAssignmentId]);
+
+    function callback() {
+        showToast('Activity submitted successfully', 'success');
+        navigate('/student/activities');
+    }
 
     return (
         <div>
@@ -45,7 +53,7 @@ export default function AssignmentPage(props) {
                             ]
                         }
 
-                        submitAssignment(assignedActivity.id, payload);
+                        submitAssignment(assignedActivity.id, payload, callback);
                     }}
                 >
                     {({
@@ -93,11 +101,11 @@ export default function AssignmentPage(props) {
                                             color="primary"
                                             // className={classes.button}
                                             type="submit"
-                                            disabled={assignedActivity.completed || essayTitlesPending || validatePending}
+                                            disabled={assignedActivity.completed || activityAssignmentsPending}
                                         >
-                                            {(essayTitlesPending || validatePending) ? 'Evaluate Changes' : 'Evaluate'}
+                                            {(activityAssignmentsPending) ? 'Evaluate Changes' : 'Evaluate'}
                                         </Button>
-                                        &nbsp; {validatePending && <CircularProgress size={20} />}
+                                        &nbsp; {activityAssignmentsPending && <CircularProgress size={20} />}
                                     </Grid>
                                 </Grid>
                                 
