@@ -2,13 +2,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // import { createSelector } from 'reselect';
 
-import StudentActivityPageComponent from './StudentActivityPage.js';
-import { getByStudent } from '../../store/actions/activityAssignments.js';
-import {getAssociatedId} from '../../store/selectors/session';
+import StudentDetailsPageComponent from './StudentDetailsPage.js';
+import { getByStudent } from '../../../store/actions/activityAssignments.js';
+// import {getAssociatedId} from '../../store/selectors/session';
 // import { selectLoginPending, selectLoginError, selectLoginErrorMessage } from '../../store/selectors/session';
 // import { fromLocalStorage } from '../../utils/storage.js';
 
-export const StudentActivityPage = connect(
+export const StudentDetailsPage = connect(
     () => {
         // const selectInitialValues = createSelector(
         //     () => {
@@ -22,7 +22,7 @@ export const StudentActivityPage = connect(
         // );
         return (state, props) => ({
             data: state.activityAssignments.data,
-            studentId: getAssociatedId(state, props),
+            // studentId: getAssociatedId(state, props),
             // getParentId: getAssociatedId(state, props),
             activityAssignmentsPending: state.activityAssignments.get.pending,
             activityAssignmentsError: state.activityAssignments.get.error,
@@ -35,4 +35,4 @@ export const StudentActivityPage = connect(
             getActivities: getByStudent,
         }, dispatch)
     })
-)(StudentActivityPageComponent);
+)(StudentDetailsPageComponent);

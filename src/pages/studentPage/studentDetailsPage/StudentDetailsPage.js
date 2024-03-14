@@ -7,11 +7,13 @@ import ChatPage from "pages/ChatPage/ChatPage";
 import { Link } from 'react-router-dom';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
-import { Loadable } from "../../common";
+import { Loadable } from "../../../common";
+import {useParams} from 'react-router-dom';
 
-export default function ActivityPage(props) {
-    const { data, studentId, activityAssignmentsPending,
+export default function StudentDetailsPage(props) {
+    const { data, activityAssignmentsPending,
         actions: { getActivities } } = props;
+        let { studentId } = useParams();
 
     useEffect(() => {
         getActivities(studentId);
@@ -30,7 +32,7 @@ export default function ActivityPage(props) {
         <Loadable loading={activityAssignmentsPending}>
         <Container component="main" maxWidth="md">
             <Typography variant="h4" component="h1" color="primary" gutterBottom style={{ fontWeight: 'bold' }}>
-                ActivityPage
+                StudentDetailsPage
             </Typography>
             <Box sx={{ width: '100%', mb: 3 }}>
                 <Tabs value={value} onChange={handleChange} variant="fullWidth" indicatorColor="primary" textColor="primary">

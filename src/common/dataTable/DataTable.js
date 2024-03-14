@@ -5,7 +5,7 @@ import Header from './Header';
 import Row from './Row';
 
 export default function Datatable(props) {
-    const { data, fields } = props;
+    const { data, fields, onRowClick } = props;
 
     return (
         <TableContainer component={Paper}>
@@ -25,6 +25,7 @@ export default function Datatable(props) {
                                 key={`column-${index}`}
                                 rowData={rowData}
                                 fields={fields}
+                                onRowClick={onRowClick}
                             />
                         )
                     })}
