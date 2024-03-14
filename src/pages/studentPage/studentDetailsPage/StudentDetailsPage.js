@@ -53,7 +53,7 @@ export default function StudentDetailsPage(props) {
                                 backgroundColor: 'transparent', // background set to transparent
                             }}
                         >
-                            <CardActionArea component={Link} to={`/activity/${id}`}>
+                            <CardActionArea component={completed ? Link : "div"} to={completed ? `/activity/${id}` : "#"}>
                                 <CardContent>
                                     <Typography variant="subtitle1" color="text.secondary" gutterBottom>
                                         <SchoolIcon color="action" sx={{ verticalAlign: 'middle', mr: 1 }} />
