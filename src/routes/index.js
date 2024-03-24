@@ -16,6 +16,7 @@ import { EssayPage } from 'pages/EssayPage';
 import { StudentActivityPage } from 'pages/studentActivityPage';
 import {AssignmentPage} from 'pages/studentActivityPage/AssignmentPage';
 import {StudentDetailsPage} from 'pages/studentPage/studentDetailsPage';
+import {McqPage} from 'pages/mcqPage';
 
 // ==============================|| ROUTING RENDER ||============================== //
 
@@ -42,6 +43,7 @@ export default function ThemeRoutes() {
             <Route path="/activities" element={<ActivitiesPage />} />
             <Route path="/activities/:activityTypeId" element={<ActivitiesEditPage />} />
             <Route path="/activity/essay" element={<EssayPage />} />
+            <Route path="/activity/mcq" element={<McqPage />} />
             <Route path="/student/:studentId/activities" element={<StudentDetailsPage />} />
             <Route path="/student/activities" element={<StudentActivityPage />} />
             <Route path="/activity/:activityAssignmentId" element={<AssignmentPage />} />

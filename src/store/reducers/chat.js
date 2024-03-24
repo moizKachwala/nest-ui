@@ -51,13 +51,16 @@ const initialStatusState = {
 
 const initialState = {
     list: [],
-    titles: [
-    ],
+    mcqQuestions: [],
+    titles: [],
     validations: '',
     getList: {
         ...initialStatusState,
     },
     getTitle: {
+        ...initialStatusState,
+    },
+    getMcqQuestions: {
         ...initialStatusState,
     },
     validate: {
@@ -103,6 +106,27 @@ export default createReducer(initialState, {
     [actions.CHAT_GET_ESSAY_TITLES_REJECTED]: (state, errorMessage) => ({
         ...state,
         getTitle: {
+            ...initialStatusState,
+            error: true,
+            errorMessage,
+        },
+    }),
+    [actions.CHAT_GET_MCQ_QUESTIONS_PENDING]: (state) => ({
+        ...state,
+        getMcqQuestions: {
+            pending: true,
+        },
+    }),
+    [actions.CHAT_GET_MCQ_QUESTIONS_FULFILLED]: (state, mcqQuestions = []) => ({
+        ...state,
+        getMcqQuestions: {
+            ...initialStatusState,
+        },
+        mcqQuestions,
+    }),
+    [actions.CHAT_GET_MCQ_QUESTIONS_REJECTED]: (state, errorMessage) => ({
+        ...state,
+        getMcqQuestions: {
             ...initialStatusState,
             error: true,
             errorMessage,

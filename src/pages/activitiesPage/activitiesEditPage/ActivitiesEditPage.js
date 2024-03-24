@@ -12,22 +12,21 @@ import List from '@mui/material/List';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
-import {useParams} from 'react-router-dom';
 import {renderErrorMessage} from '../../../utils/error';
 import { useToast } from '../../../context/ToastContext';
+import {MCQComponent, EssayComponent} from '../../../common';
 
 export default function ActivitiesEditPage(props) {
 
-    const { essayTitlesPending, validatePending, initialValues, titles,
-        getParentId, students, activityCreatePending,
+    const { essayTitlesPending, validatePending, initialValues, titles, activityType,
+        parentId, students, activityCreatePending,
         actions: { getTitles, studentsGet, activityCreate }
     } = props;
-    let { activityTypeId } = useParams();
+    
     const { showToast } = useToast();
 
     const [hint, setHint] = useState('');
     const [checked, setChecked] = useState([]);
-    // const [difficulty, setDifficulty] = useState('easy');
 
     function callback() {
         showToast('Activity successfully created', 'success');
@@ -49,8 +48,8 @@ export default function ActivitiesEditPage(props) {
 
     useEffect(() => {
         getTitles();
-        studentsGet(getParentId);
-    }, [getTitles, studentsGet, getParentId]);
+        studentsGet(parentId);
+    }, [getTitles, studentsGet, parentId]);
 
     function handleTitleChange(event, handleChange) {
         handleChange(event);
@@ -87,7 +86,7 @@ export default function ActivitiesEditPage(props) {
                         let payload = {
                             name: 'Essay Activity',
                             description: 'essay writing',
-                            activityTypeId: activityTypeId,
+                            activityTypeId: activityType?.id,
                             subjectId: '2f82cf72-5787-41e1-a9c0-2e0bd50a8a36',
                             questions: [
                                 {
@@ -98,26 +97,8 @@ export default function ActivitiesEditPage(props) {
                             ],
                             assignments: checked.map((id) => ({studentId: id})),
                         }
-                        console.log({payload});
-                        activityCreate(payload, callback);
-
-                        // shouldReloadGrid = true;
-                        // let payload = {
-                        //     name: values.name,
-                        //     description: values.description,
-                        //     ein: values.ein,
-                        //     active: values.active,
-                        // }
-                        // if (mode === 'create') {
-                        //     facilityCreate(payload, handleCallback, shouldReloadGrid);
-                        // }
-                        // else {
-                        //     payload = {
-                        //         ...payload,
-                        //         id: values.id,
-                        //     }
-                        //     facilityUpdate(payload, handleCallback, shouldReloadGrid);
-                        // }
+                        console.log({values});
+                        //activityCreate(payload, callback);
                     }}
                 >
                     {({
@@ -135,55 +116,27 @@ export default function ActivitiesEditPage(props) {
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
                                             <div className="error">
-                                                Moiz
                                                 {renderMessage()}
                                             </div>
                                         </Grid>
-
                                     <Grid item xs={12}>
-                                        {/* {titles.map(({ title }) => (
-                                                    <ListItem
-                                                    key={title}
-                                                    disablePadding
-                                                  >
-                                                    <ListItemButton role={undefined} onClick={handleToggle(title)} dense>
-                                                        <ListItemIcon>
-                                                            <Checkbox
-                                                            edge="start"
-                                                            checked={checked.indexOf(title) !== -1}
-                                                            tabIndex={-1}
-                                                            disableRipple
-                                                            inputProps={{ 'aria-labelledby': title }}
-                                                            />
-                                                        </ListItemIcon>
-                                                        <ListItemText id={title} primary={title} />
-                                                        </ListItemButton>
-                                                  </ListItem>
-                                        ))} */}
-
-                                        <FormControl fullWidth>
-                                            <InputLabel id="demo-simple-select-label">Essay Titles</InputLabel>
-                                            <Select
-                                                required
-                                                value={values.title}
-                                                onChange={(event) => handleTitleChange(event, handleChange)}
-                                                inputProps={{
-                                                    name: "title",
-                                                    id: "title",
-                                                }}
-                                            >
-                                                {titles.map(({ title }) => (
-                                                    <MenuItem
-                                                        key={title}
-                                                        value={title}
-                                                    >
-                                                        {title}
-                                                    </MenuItem>
-                                                ))}
-                                            </Select>
-                                        </FormControl>
+                                    <MCQComponent
+                                        name="mcq"
+                                        questionProp="What is the capital of France?"
+                                        choicesProp={[
+                                            { text: "Paris", isCorrect: true },
+                                            { text: "London", isCorrect: false },
+                                        ]}
+                                        mode="answer"
+                                        />
                                     </Grid>
                                     <Grid item xs={12}>
+                                        <EssayComponent titles={titles} />
+                                    </Grid>
+                                    {/* <Grid item xs={12}>
+                                        <MCQComponent />
+                                    </Grid> */}
+                                    {/* <Grid item xs={12}>
                                         <Grid container justifyContent="flex-end">
                                             <Button variant="contained" 
                                                 onClick={getTitles} 
@@ -200,7 +153,7 @@ export default function ActivitiesEditPage(props) {
                                                 <h2>{hint}</h2>
                                             </Alert>
                                         </Grid>
-                                    )}
+                                    )} */}
 
                                     <Grid item xs={12}>
                                          {students.map(({ id, user }) => (

@@ -9,8 +9,7 @@ import {useParams} from 'react-router-dom';
 export const AssignmentPage = connect(
     () => {
         let { activityAssignmentId } = useParams();
-        console.log('activityAssignmentId', {activityAssignmentId});
-        const selectActivityId = () => activityAssignmentId;
+        const selectActivityAssignmentId = () => activityAssignmentId;
 
         const selectMode = (state) => state.chat.titles;
         const selectInitialValues = createSelector(
@@ -18,6 +17,7 @@ export const AssignmentPage = connect(
             (mode) => {
                 return {
                         content: '',
+                        mcqAnswers: {}, 
                 }
             }
         )
@@ -29,7 +29,7 @@ export const AssignmentPage = connect(
             validations: state.chat.validations,
             initialValues: selectInitialValues(state, props),
             assignedActivity: selectedActivity(state, props),
-            activityId: selectActivityId(state, props),
+            activityAssignmentId: selectActivityAssignmentId(state, props),
         });
     },
     (dispatch, props) => ({

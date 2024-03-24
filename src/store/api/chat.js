@@ -25,6 +25,14 @@ const getTitles = () => {
     }).then(apiHandleResponse);
 };
 
+const getMcqQuestions = (options) => {
+    return fetch(`${SERVER_URL}/chat-gpt-ai/listMcq`, {
+        method: METHOD_POST,
+        headers: headersAuthSendReceiveTextHtml(),
+        body: JSON.stringify(options),
+    }).then(apiHandleResponse);
+};
+
 const validateEssay = (options) => {
     return fetch(`${SERVER_URL}/chat-gpt-ai/validateEssay`, {
         method: METHOD_POST,
@@ -36,5 +44,6 @@ const validateEssay = (options) => {
 export {
     getList,
     getTitles,
-    validateEssay
+    validateEssay,
+    getMcqQuestions
 };

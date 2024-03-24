@@ -31,6 +31,22 @@ function* getTitles(action) {
     }
 }
 
+function* getMcqQuestions(action) {
+    try {
+        yield put({ type: actions.CHAT_GET_MCQ_QUESTIONS_PENDING });
+        const {
+            questionPayload
+        } = action.payload;
+        const payload = yield call(API.getMcqQuestions, questionPayload);
+        yield put({ type: actions.CHAT_GET_MCQ_QUESTIONS_FULFILLED, payload });
+    } catch (error) {
+        const { error: errorMessage } = (error && error.payload) || { error: '' };
+        yield put({ type: actions.CHAT_GET_MCQ_QUESTIONS_REJECTED, payload: errorMessage });
+        yield call(sessionErrorHandling, error);
+    }
+}
+
+
 function* validateEssay(action) {
     try {
         yield put({ type: actions.CHAT_VALIDATE_ESSAY_PENDING });
@@ -53,5 +69,6 @@ function* validateEssay(action) {
 export default function*() {
     yield takeEvery(actions.CHAT_GET_RESPONSE, getList);
     yield takeEvery(actions.CHAT_GET_ESSAY_TITLES, getTitles);
+    yield takeEvery(actions.CHAT_GET_MCQ_QUESTIONS, getMcqQuestions);
     yield takeEvery(actions.CHAT_VALIDATE_ESSAY, validateEssay);
 }

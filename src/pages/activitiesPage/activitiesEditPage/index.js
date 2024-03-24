@@ -7,9 +7,17 @@ import { getStudentByParent } from '../../../store/actions/students';
 import { createSelector } from 'reselect';
 import {getAssociatedId} from '../../../store/selectors/session';
 import {selectStudents} from '../../../store/selectors/students';
+import {createActivityTypeSelector} from '../../../store/selectors/activityTypes';
+import {useParams} from 'react-router-dom';
 
 export const ActivitiesEditPage = connect(
     () => {
+
+        let { activityTypeId } = useParams();
+        
+        const selectActivityId = () => activityTypeId;
+
+        const selectActivityType = createActivityTypeSelector(selectActivityId);
 
         const selectMode = (state) => state.chat.titles;
         const selectInitialValues = createSelector(
@@ -30,8 +38,9 @@ export const ActivitiesEditPage = connect(
             titles: state.chat.titles,
             validations: state.chat.validations,
             initialValues: selectInitialValues(state, props),
-            getParentId: getAssociatedId(state, props),
+            parentId: getAssociatedId(state, props), // we need it to get the associated student.
             students: selectStudents(state, props),
+            activityType: selectActivityType(state, props),
         });
     },
     (dispatch, props) => ({

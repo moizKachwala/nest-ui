@@ -8,6 +8,11 @@ export const CHAT_GET_ESSAY_TITLES_PENDING = 'CHAT_GET_ESSAY_TITLES_PENDING';
 export const CHAT_GET_ESSAY_TITLES_FULFILLED = 'CHAT_GET_ESSAY_TITLES_FULFILLED';
 export const CHAT_GET_ESSAY_TITLES_REJECTED = 'CHAT_GET_ESSAY_TITLES_REJECTED';
 
+export const CHAT_GET_MCQ_QUESTIONS = 'CHAT_GET_MCQ_QUESTIONS';
+export const CHAT_GET_MCQ_QUESTIONS_PENDING = 'CHAT_GET_MCQ_QUESTIONS_PENDING';
+export const CHAT_GET_MCQ_QUESTIONS_FULFILLED = 'CHAT_GET_MCQ_QUESTIONS_FULFILLED';
+export const CHAT_GET_MCQ_QUESTIONS_REJECTED = 'CHAT_GET_MCQ_QUESTIONS_REJECTED';
+
 export const CHAT_VALIDATE_ESSAY = 'CHAT_VALIDATE_ESSAY';
 export const CHAT_VALIDATE_ESSAY_PENDING = 'CHAT_VALIDATE_ESSAY_PENDING';
 export const CHAT_VALIDATE_ESSAY_FULFILLED = 'CHAT_VALIDATE_ESSAY_FULFILLED';
@@ -20,6 +25,11 @@ export const list = (chatPayload) => ({
 
 export const getTitles = () => ({
     type: CHAT_GET_ESSAY_TITLES
+});
+
+export const getMcqQuestions = (questionPayload) => ({
+    type: CHAT_GET_MCQ_QUESTIONS,
+    payload: {questionPayload}
 });
 
 export const validate = (essay) => ({

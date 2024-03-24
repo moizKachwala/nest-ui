@@ -58,7 +58,7 @@ export default function ActivityPage(props) {
                                         {activity.name}
                                     </Typography>
                                     <Typography variant="h5" component="div" gutterBottom sx={{ textDecoration: 'underline', color: completed ? 'primary.main' : 'secondary.main' }}>
-                                        {activity.questions[0].title}
+                                        {activity.description}
                                     </Typography>
                                     <Divider sx={{ my: 1 }} />
                                     <Typography variant="body2" color="text.secondary">

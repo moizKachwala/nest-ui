@@ -20,7 +20,7 @@ export default function ActivitiesPage(props) {
         }
     };
 
-    const { data, 
+    const { activityTypes, 
       actions: { activityTypesList } } = props;
     const [selectedCard, setSelectedCard] = useState(null);
     
@@ -28,7 +28,7 @@ export default function ActivitiesPage(props) {
         activityTypesList();
     }, [activityTypesList]);
 
-    const handleCardClick = (itemId) => {
+    const handleCardClick = (activityTypeId) => {
         
       };
 
@@ -37,22 +37,23 @@ export default function ActivitiesPage(props) {
             <Typography variant="h4" component="h1" gutterBottom>
                 Activities Page
             </Typography>
-            {data.map(item => (
+            {activityTypes.map(activityType => (
                 <Card 
-                    key={item.id} 
+                    key={activityType.id} 
                     sx={{ display: 'flex', alignItems: 'center', marginBottom: 2, '&:hover': { boxShadow: 6 }, pl: 2 }} 
                 >
                     <IconButton edge="start" sx={{ marginRight: 1, color: 'inherit' }}>
-                        {getIcon(item.type, item.iconColor)}
+                        {getIcon(activityType.type, activityType.iconColor)}
                     </IconButton>
-                    <CardActionArea onClick={() => handleCardClick(item.id)} sx={{ display: 'flex', flexGrow: 1 }}>
-                        <Link to={`/activities/${item.id}`} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexGrow: 1, alignItems: 'center' }}>
+                    <CardActionArea onClick={() => handleCardClick(activityType.id)} sx={{ display: 'flex', flexGrow: 1 }}>
+                    {/* /activities/${activityType.id} */}
+                        <Link to={`/activity/mcq`} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexGrow: 1, alignItems: 'center' }}>
                             <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
                                 <Typography variant="h5" component="div" gutterBottom>
-                                    {item.name}
+                                    {activityType.name}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    {item.description}
+                                    {activityType.description}
                                 </Typography>
                             </CardContent>
                         </Link>

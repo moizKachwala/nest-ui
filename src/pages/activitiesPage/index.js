@@ -21,7 +21,7 @@ export const ActivitiesPage = connect(
         //     }
         // );
         return (state, props) => ({
-            data: state.activityTypes.list,
+            activityTypes: state.activityTypes.list,
             // getParentId: getAssociatedId(state, props),
             // loginPending: selectLoginPending(state),
             // loginError: selectLoginError(state),
